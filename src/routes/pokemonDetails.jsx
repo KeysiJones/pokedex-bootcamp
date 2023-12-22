@@ -8,12 +8,17 @@ const PokemonDetailsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2rem;
 `
 const PokemonName = styled.p`
     font-size: 32px;
     font-weight: 800;
     color: white;
     text-transform: capitalize;
+
+    @media screen and (max-width: 800px) {
+        color: navy;
+    }
 `
 
 const PokemonDetailsContainer = styled.div`
@@ -21,10 +26,21 @@ const PokemonDetailsContainer = styled.div`
     padding: 30px;
     border-radius: 30px;
     display: flex;
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        padding: 30px 0;
+        background-color: white;
+        max-width: 400px;
+    }
 `
 
 const PokemonImageWrapper = styled.div`
     max-width: 400px;
+    background-color: #919eab;
+    border-radius: 10px;
 
     img {
         width: 100%;
@@ -35,7 +51,15 @@ const PokemonDescriptionWrapper = styled.div`
     row-gap: 10px;
     flex-direction: column;
     max-width: 300px;
-    margin-top: 90px;
+    justify-content: center;
+    color: white;
+
+    @media screen and (max-width: 800px) {
+        margin-top: 30px;
+        color: navy;
+        max-width: unset;
+        width: 100%;
+    }
 `
 
 const PokemonDescription = styled.p`
@@ -56,7 +80,6 @@ const LinkWrapper = styled.div`
     }
 `
 const PokemonInfo = styled.p`
-    color: white;
     font-size: 20px;
 `
 const PokemonInfoWrapper = styled.div`
@@ -64,6 +87,11 @@ const PokemonInfoWrapper = styled.div`
     flex-direction: column;
     row-gap: 5px;
     font-weight: 800;
+    color: white;
+
+    @media screen and (max-width: 800px) {
+        color: navy;
+    }
 `
 
 function PokemonDetails () {
