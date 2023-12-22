@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { usePokemon } from '../hook/usePokemon'
 import { LoadingSpinner } from '../components/LoadingSpinner'
+import { useEffect, useState } from 'react'
 
 export const PokemonListWrapper = styled.div`
     display: flex;
@@ -17,8 +18,10 @@ export const PokemonContainer = styled.div`
 `
 
 export const PokemonName = styled.p`
-    font-size: 20px;
+    font-size: 25px;
     color: black;
+    text-transform: capitalize;
+    margin-bottom: 10px;
 `
 
 export const PokemonCard = styled.a`
@@ -40,18 +43,29 @@ const PokemonTypeWrapper = styled.div`
 `
 
 const PokemonTypeBox = styled.div`
-    font-size: 12px;
-    border-radius: 2px;
+    font-size: 15px;
+    border-radius: 10px;
+    text-transform: capitalize;
     max-width: 50px;
     color: white;
     background-color: ${(props) => props.backgroundColor};
-    padding: 1px 10px;
+    padding: 2px 20px;
 `
 
 const PokemonList = () => {
-    const { pokemonData } = usePokemon()
-    console.log({pokemonData})
-    if (!pokemonData.length) return <LoadingSpinner />
+    const [pokemonList, setPokemonList] = useState([])
+    const { getPokemonList } = usePokemon()
+
+    useEffect(() => {
+        const fetchPokemonList = async () => {
+            const pokemonData = await getPokemonList()
+            setPokemonList(pokemonData)
+        }
+
+        fetchPokemonList()
+    }, [ getPokemonList ])
+
+    if (!pokemonList.length) return <LoadingSpinner />
 
     const COLOR_MAP = {
         'grass': 'green',
@@ -69,15 +83,13 @@ const PokemonList = () => {
         <PokemonListWrapper>
             <PokemonContainer>
                 {
-                    pokemonData?.map((pokemon) => (
+                    pokemonList?.map((pokemon) => (
                         <PokemonCard href={`/pokemons/${pokemon.id}`} key={pokemon.id}>
                             <PokemonImage src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
                             <PokemonName>{pokemon.name}</PokemonName>
                             <PokemonTypeWrapper>
                                 {
                                     pokemon?.types?.map(({ type }, index) => {
-                                        console.log({ type: type.name })
-
                                         return (
                                             <PokemonTypeBox key={index} backgroundColor={COLOR_MAP[type.name] || 'grey'}>
                                                 {type.name}

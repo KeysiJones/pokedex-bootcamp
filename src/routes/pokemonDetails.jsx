@@ -74,7 +74,7 @@ function PokemonDetails () {
         const fetchPokemonData = async () => {
             const pokemon = await getPokemonById(pokemonId)
             const pokemonDescription = await getPokemonDescriptionById(pokemonId)
-            setPokemon(pokemon)
+            setPokemon(pokemon.data)
             setPokemonDescription(pokemonDescription.data.flavor_text_entries[11].flavor_text)
         }
 
