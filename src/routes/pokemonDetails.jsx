@@ -61,7 +61,9 @@ const PokemonInfo = styled.p`
 `
 const PokemonInfoWrapper = styled.div`
     display: flex;
-    column-gap: 5px;
+    flex-direction: column;
+    row-gap: 5px;
+    font-weight: 800;
 `
 
 function PokemonDetails () {
