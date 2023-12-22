@@ -74,27 +74,27 @@ function PokemonDetails () {
         const fetchPokemonData = async () => {
             const pokemon = await getPokemonById(pokemonId)
             const pokemonDescription = await getPokemonDescriptionById(pokemonId)
-            setPokemon(pokemon.data)
+            setPokemon(pokemon)
             setPokemonDescription(pokemonDescription.data.flavor_text_entries[11].flavor_text)
         }
 
         fetchPokemonData()
     }, [getPokemonById, pokemonId, getPokemonDescriptionById])
-
-    if (!pokemon.name) return <LoadingSpinner />
+    console.log({pokemon})
+    if (!pokemon?.name) return <LoadingSpinner />
 
     return (
         <PokemonDetailsWrapper>
             <PokemonDetailsContainer>
                 <PokemonImageWrapper>
-                    <img src={pokemon.image} alt={pokemon.name} />
+                    <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
                 </PokemonImageWrapper>
                 <PokemonDescriptionWrapper>
                     <PokemonName>{pokemon.name}</PokemonName>
                     <PokemonDescription>{pokemonDescription}</PokemonDescription>
                     <PokemonInfoWrapper>
-                        <PokemonInfo>Altura: {pokemon.details.height} CM</PokemonInfo>
-                        <PokemonInfo>Peso: {pokemon.details.weight} KG</PokemonInfo>
+                        <PokemonInfo>Altura: {pokemon?.height} CM</PokemonInfo>
+                        <PokemonInfo>Peso: {pokemon?.weight} KG</PokemonInfo>
                     </PokemonInfoWrapper>
                 </PokemonDescriptionWrapper>
             </PokemonDetailsContainer>

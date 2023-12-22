@@ -50,7 +50,7 @@ const PokemonTypeBox = styled.div`
 
 const PokemonList = () => {
     const { pokemonData } = usePokemon()
-
+    console.log({pokemonData})
     if (!pokemonData.length) return <LoadingSpinner />
 
     const COLOR_MAP = {
@@ -69,18 +69,18 @@ const PokemonList = () => {
         <PokemonListWrapper>
             <PokemonContainer>
                 {
-                    pokemonData.map((pokemon) => (
+                    pokemonData?.map((pokemon) => (
                         <PokemonCard href={`/pokemons/${pokemon.id}`} key={pokemon.id}>
-                            <PokemonImage src={pokemon.image} alt={pokemon.name} />
+                            <PokemonImage src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
                             <PokemonName>{pokemon.name}</PokemonName>
                             <PokemonTypeWrapper>
                                 {
-                                    pokemon?.pokemonTypes.map(({ pokemonType }, index) => {
-                                        console.log({ type: pokemonType.name })
+                                    pokemon?.types?.map(({ type }, index) => {
+                                        console.log({ type: type.name })
 
                                         return (
-                                            <PokemonTypeBox key={index} backgroundColor={COLOR_MAP[pokemonType.name] || 'grey'}>
-                                                {pokemonType.name}
+                                            <PokemonTypeBox key={index} backgroundColor={COLOR_MAP[type.name] || 'grey'}>
+                                                {type.name}
                                             </PokemonTypeBox>
                                     )})
                                 }
