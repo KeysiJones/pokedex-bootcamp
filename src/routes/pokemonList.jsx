@@ -10,11 +10,33 @@ export const PokemonListWrapper = styled.div`
     width: 100%;
     margin: 50px auto;
     max-width: 1300px;
+
+    @media screen and (max-width: 1440px) {
+        max-width: 1000px;
+    }
+
+    @media screen and (max-width: 1100px) {
+        max-width: 680px;
+    }
 `
 
 export const PokemonContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-self: center;
+
+    @media screen and (max-width: 1440px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media screen and (max-width: 1100px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 export const PokemonName = styled.p`
@@ -28,11 +50,15 @@ export const PokemonCard = styled.a`
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
-    max-width: 500px;
+    max-width: 300px;
+
+    @media screen and (max-width: 768px) {
+        max-width: 400px;
+    }
 `
 
 export const PokemonImage = styled.img`
-    max-width: 300px;
+    width: 100%;
     background-color: #00000014;
     border-radius: 5px;
 `
