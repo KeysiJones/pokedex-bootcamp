@@ -80,7 +80,7 @@ function PokemonDetails () {
 
         fetchPokemonData()
     }, [getPokemonById, pokemonId, getPokemonDescriptionById])
-    console.log({pokemon})
+
     if (!pokemon?.name) return <LoadingSpinner />
 
     return (
@@ -90,7 +90,7 @@ function PokemonDetails () {
                     <img src={pokemon?.sprites.other['official-artwork'].front_default} alt={pokemon?.name} />
                 </PokemonImageWrapper>
                 <PokemonDescriptionWrapper>
-                    <PokemonName>{pokemon.name}</PokemonName>
+                    <PokemonName>{pokemon?.name}</PokemonName>
                     <PokemonDescription>{pokemonDescription}</PokemonDescription>
                     <PokemonInfoWrapper>
                         <PokemonInfo>Altura: {pokemon?.height} CM</PokemonInfo>
